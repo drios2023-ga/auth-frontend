@@ -15,7 +15,7 @@ export default function NavBar({user, setUser}) {
       <div className="nav-contents">
         
         <h1>Authentication</h1>
-          Welcome {user.username}!
+          Welcome { user.username }!
        <br />
        <br />        
         <nav>

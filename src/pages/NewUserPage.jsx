@@ -1,12 +1,14 @@
 
 import { signUp } from '../utilities/users-service';
 import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function NewUserPage(){
+export default function NewUserPage({fetchUser}){
 
 const refUserName = useRef(null);
 const refPassword = useRef(null);
 const refMessage = useRef("");
+const navigate = useNavigate();
 
 const [credentials, setCredentials] = useState({
       username: "",
@@ -26,13 +28,14 @@ async function handleSubmit(evt){
             refPassword.current.value = "";
             refMessage.current.value = 'Success!'
       } catch (err) {
-            console.log(err);
             refUserName.current.value = "";
             refPassword.current.value = "";
             refMessage.current.value = 'Sign up failed.'
             return 'Sign Up Failed - Try Again';
       }
 
+      fetchUser();
+      
 }
 
     return(    

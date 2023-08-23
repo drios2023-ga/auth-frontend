@@ -1,8 +1,8 @@
 import { login } from "../utilities/users-service";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import './LoginPage.css';
 
-export default function LoginPage({user, setUser}){
+export default function LoginPage({user, setUser, fetchUser}){
 
   const [username, setUserName] = useState("");
   const refUserName = useRef(null);
@@ -34,7 +34,10 @@ async function handleSubmit(evt) {
     }
   }
 
-
+  useEffect(()=>{
+    fetchUser();
+  
+  },[])
   return(    
     <div>
       <br />

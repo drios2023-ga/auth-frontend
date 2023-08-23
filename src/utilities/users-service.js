@@ -1,9 +1,11 @@
 
 import * as usersAPI from './users-api';
 
-
-export async function signUp(userData) {
-    const token = await usersAPI.signUp(userData);
+                                                      
+export async function signUp(userData) {  
+  console.log(userData);          
+    const token = await usersAPI.signUp(userData); //////////////////////
+    console.log(token);                             
     const stringifyToken = JSON.stringify(token);
     localStorage.setItem('token', stringifyToken);
     return getUser();
@@ -14,20 +16,20 @@ export async function login(credentials) {
     const token = await usersAPI.login(credentials);
     const stringifyToken = JSON.stringify(token);
     localStorage.setItem('token', stringifyToken);
-    console.log(stringifyToken);
+    //console.log(stringifyToken);
     return getUser();
   }
 
   export function getToken() {
     // getItem will return null if the key does not exists
     const token = localStorage.getItem('token');
-    console.log(token)
+    //console.log(token)
     //if no token, return null
     if (!token) return null;
   
     //fetches payload from the token
     const payload = JSON.parse(token);
-    console.log(payload);
+    //console.log(payload);
   
     // JWT's exp expressed in seconds, not miliseconds
     // So this is 1000 seconds
@@ -41,7 +43,7 @@ export async function login(credentials) {
   
 export function getUser() {
     const token = getToken();
-    console.log(token);
+    //console.log(token);
     //return token ? JSON.parse(token).user : null;
     return JSON.parse(token);
   }
